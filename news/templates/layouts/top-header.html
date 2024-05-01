@@ -1,0 +1,33 @@
+{% load static %}
+<!-- Brand Start -->
+<div class="brand">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4">
+                <div class="b-logo">
+                    {% if settingData.logo %}
+                    <a href="{% url 'index' %}">
+                        <img src="{{settingData.logo.url}}" alt="Logo">
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div class="b-ads">
+                    <a href="https://htmlcodex.com" target="_blank">
+                        <img src="/news/uploads/images/ads.jpg" alt="Ads">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <form action="{% url 'index' %}" method="get">
+                <div class="b-search">
+                    <input type="text" name="search" placeholder="Search">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Brand End -->

@@ -1,0 +1,52 @@
+{% extends 'master/master.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">{{blogsData.title}}</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        <div>
+        <!-- Single News Start-->
+        <div class="single-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="sn-container">
+                            {% if blogsData.image %}
+                            <div class="sn-img">
+                                <img src="{{blogsData.image.url}}" width="100%" alt="{{blogsData.title}}"/>
+                            </div>
+                            {% endif %}
+                            <div class="btn-default">
+                                <div class="container">
+                                    <a href="{%url 'blog_update' blogsData.slug %}" class="btn btn-outline-success" style="margin-top:30px">Update Blog
+                                    </a>
+                                    <a href="{%url 'blog_delete' blogsData.slug %}" onclick="return confirm('Are You Sure?')" class="btn btn-outline-danger" style="margin-top:30px">Delete Blog
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sn-content">
+                                <h1 class="sn-title">{{blogsData.title}}</h1>
+                                <p><b>By : {{blogsData.author}}</b></p>
+                                <p><b>{{blogsData.date}}</b></p>
+                                <p>
+                                    {{blogsData.intro |safe}}
+                                </p>
+                                <p>
+                                    {{blogsData.content |safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single News End-->        
+
+{% endblock %}

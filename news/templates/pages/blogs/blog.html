@@ -1,0 +1,95 @@
+{% extends 'master/master.html' %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6 tn-left">
+        <h3><a href="{% url 'blog_add' %}" ><button class="btn btn-success" style="margin-top:50px">Add New Blog</button></a></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+    <!-- Top Blog Start-->
+        <div class="top-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 tn-left">
+                        <div class="row tn-slider">
+                            {% for blogs in blogsData %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    {% if blogs.image %}
+                                    <img src="{{blogs.image.url}}" height="300" alt="{{blogs.title}}"/>
+                                    {% endif %}
+                                    <div class="tn-title">
+                                        <a href="{% url 'blog_details' blogs.slug %}">{{blogs.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 tn-right">
+                        <div class="row tn-slider">
+                            {% for blogs in blogsData %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    {% if blogs.image %}
+                                    <img src="{{blogs.image.url}}" height="300" alt="{{blogs.title}}"/>
+                                    {% endif %}
+                                    <div class="tn-title">
+                                        <a href="{% url 'blog_details' blogs.slug %}">{{blogs.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 tn-left">
+                        <div class="row tn-slider">
+                            {% for blogs in blogsData %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    {% if blogs.image %}
+                                    <img src="{{blogs.image.url}}" height="300" alt="{{blogs.title}}"/>
+                                    {% endif %}
+                                    <div class="tn-title">
+                                        <a href="{% url 'blog_details' blogs.slug %}">{{blogs.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 tn-right">
+                        <div class="row tn-slider">
+                            {% for blogs in blogsData %}
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    {% if blogs.image %}
+                                    <img src="{{blogs.image.url}}" height="300" alt="{{blogs.title}}"/>
+                                    {% endif %}
+                                    <div class="tn-title">
+                                        <a href="{% url 'blog_details' blogs.slug %}">{{blogs.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top News End-->
+{% endblock %}

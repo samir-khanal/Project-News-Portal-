@@ -1,0 +1,99 @@
+{% extends 'master/master.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item">{{newsData.category}}</li>
+                    <li class="breadcrumb-item active">{{newsData.title}}</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+        
+        <!-- Single News Start-->
+        <div class="single-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="sn-container">
+                            {% if newsData.image %}
+                            <div class="sn-img">
+                                <img src="{{newsData.image.url}}" width="100%" alt="{{newsData.title}}"/>
+                            </div>
+                            {% endif %}
+                            <div class="sn-content">
+                                <h1 class="sn-title">{{newsData.title}}</h1>
+                                <p><b>Total Views : {{newsData.views}}</b></p>
+                                <p><b>By : {{newsData.author}}</b></p>
+                                <p><b>{{newsData.date}}</b></p>
+                                <p>
+                                    {{newsData.intro |safe}}
+                                </p>
+                                <p>
+                                    {{newsData.content |safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <div class="sidebar-widget">
+                                <h2 class="sw-title">In This Category</h2>
+                                <div class="news-list">
+                                    {% for n_related in related_news%}
+                                    <div class="nl-item">
+                                        {% if n_related.image %}
+                                        <div class="nl-img">
+                                            <img src="{{n_related.image.url}}"  height="80" alt="{{n_related.title}}" />
+                                        </div>
+                                        {% endif %}
+                                        <div class="nl-title">
+                                            <a href="{% url 'news_details' n_related.slug %}">{{n_related.title}}</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="sidebar-widget">
+                                <div class="tab-news">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="pill" href="#most_viewed">Most Viewed in This Category</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tn-news">
+                                            {% for news in most_viewed_news %}
+                                                {% if news.image %}
+                                                <div class="tn-img">
+                                                    <img src="{{news.image.url}}" alt="{{news.title}}" />
+                                                </div>
+                                                {% endif %}
+                                                <div class="tn-title">
+                                                    <a href="{% url 'news_details' news.slug %}">{{news.title}}</a>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget">
+                                <h2 class="sw-title">News Categories</h2>
+                                {% for category in CategoryData%}
+                                <div class="tags">
+                                    <a href="{% url 'category' category.category_name %}">{{category.category_name}}</a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single News End-->        
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'master/master.html' %}
+{% block content %}
+<div class="container" style="margin-top:70px; margin-bottom:50px;">
+    <div class="row">
+        {% for news in newsData %}
+        <div class="card" style="width: 18rem; margin-right:20px">
+            {% if news.image %}
+            <img src="{{news.image.url}}" class="card-img-top" alt="{{news.title}}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{news.title}}</h5>
+                <p class="card-text">{{news.intro |safe}}</p>
+                <a href="{% url 'news_details' news.slug %}" class="btn btn-primary">Read More...</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
